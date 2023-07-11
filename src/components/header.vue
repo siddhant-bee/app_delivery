@@ -11,7 +11,9 @@
 
 <nav class="navbar bg-body-tertiary" >
   <div class="container-fluid">
-     <img src="../assets/download.jpeg" alt="Logo" width="80" height="80" class="d-inline-block align-text-top">
+      <router-link to="/"> <img src="../assets/download.jpeg" alt="Logo" width="80" height="80" /></router-link>
+      
+    
     <a class="navbar-brand" href="#" >
      
           Food Alix
@@ -33,9 +35,9 @@
           <a class="nav-link" href="#">Link</a>
         </li> -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <!-- <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Veg
-          </a>
+          </a> -->
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#" >Veg </a></li>
             <li><a class="dropdown-item" href="#"> Non veg</a></li>

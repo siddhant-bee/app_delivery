@@ -1,12 +1,13 @@
 <template>
  <div class="wrap">
-       <div v-for="index in 6" :key="index" >
+     <div v-for="menuItem in menuItems" :key="menuItem.id" class="menu-item">
 <div class="card" style="width: 18rem; "  >
+
   <img src="../assets/india-food-paratha.webp" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title"> Food 1</h5>
+    <h5 class="card-title"> {{menuItem.name}}</h5>
     <p class="card-text">this is a really delicious food .</p>
-    <h6>price - 500RS/-</h6>
+    <h6>Price - {{menuItem.price}} RS </h6>
     
     <a href="#" class="btn btn-primary">Buy now</a>
   </div>
@@ -16,9 +17,36 @@
 </template>
 
 <script>
-    export default {
-        name:"image"
-    }
+import axios from 'axios';
+import Header from "./header.vue"
+
+export default {
+   name:"image",
+    components:{
+Header
+    },
+  data() {
+    return {
+      menuItems: []
+    };
+  },
+  created() {
+
+    axios.get('http://localhost:5000/menu')
+        .then(response => {
+          this.menuItems = response.data;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+  },
+
+};
+
+
+
+
+    
 </script>
 
 <style scoped>
@@ -36,3 +64,24 @@
   flex-wrap: wrap;
 }
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

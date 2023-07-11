@@ -12,7 +12,7 @@
     </div>
     <div class="navbar-menu">
             <router-link to="/updatemenu"> <button @click="updateMenu">Upload Menu</button></router-link>
-      <router-link to="/menu"><button @click="uploadMenu">check Menu</button></router-link>
+      <router-link to="/adminmenu"><button @click="uploadMenu">check Menu</button></router-link>
        
       
        <router-link to="/updatemenu"> <button @click="updateMenu">Order History</button></router-link>

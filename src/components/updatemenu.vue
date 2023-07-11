@@ -7,10 +7,10 @@
         <label for="name">Name:</label>
         <input type="text" id="name" v-model="itemName" required />
       </div>
-      <div>
+      <!-- <div>
         <label for="description">Description:</label>
         <textarea id="description" v-model="itemDescription" required></textarea>
-      </div>
+      </div> -->
       <div>
         <label for="price">Price:</label>
         <input type="number" id="price" v-model="itemPrice" required />

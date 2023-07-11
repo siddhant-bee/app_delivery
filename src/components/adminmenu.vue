@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header/>
+    <Adminnavbar/>
     <h1>Menu</h1>
 
 
@@ -28,13 +28,16 @@
 </template>
 
 <script>
+import Adminnavbar from './adminnavbar.vue'
+
 import axios from 'axios';
-import Header from "./header.vue"
 
 export default {
+    name:"adminmenu",
     components:{
-Header
-    },
+            Adminnavbar,
+
+        },
   data() {
     return {
       menuItems: []

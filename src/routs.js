@@ -6,14 +6,20 @@ import adminnavbar from "./components/adminnavbar.vue"
 import adminhome from "./components/adminhome.vue"
 import updatemenu from "./components/updatemenu.vue"
 import menu from "./components/menu.vue"
+import adminmenu from "./components/adminmenu.vue"
 
 updatemenu
 const routes=[
    {
-    name:"menu",
-    component:menu,
-    path:"/menu"
+    name:"adminmenu",
+    component:adminmenu,
+    path:"/adminmenu"
    },
+   {
+      name:"menu",
+      component:menu,
+      path:"/menu"
+     },,
    {
       name:"home",
       component:home,
