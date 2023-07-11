@@ -5,13 +5,20 @@ import login from "./components/login.vue"
 import adminnavbar from "./components/adminnavbar.vue"
 import adminhome from "./components/adminhome.vue"
 import updatemenu from "./components/updatemenu.vue"
+import menu from "./components/menu.vue"
+
 updatemenu
 const routes=[
    {
-    name:"home",
-    component:home,
-    path:"/"
+    name:"menu",
+    component:menu,
+    path:"/menu"
    },
+   {
+      name:"home",
+      component:home,
+      path:"/"
+     },
    {
     name:"login",
     component:login,

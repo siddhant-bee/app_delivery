@@ -19,8 +19,8 @@
   </div>
 </nav>
 
+      <router-link to="/menu" class="menu-link">Check Menu</router-link>
 
-    <a class="navbar-brand " href="#">Menu</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -47,6 +47,11 @@
           <a class="nav-link disabled">Disabled</a>
         </li> -->
       </ul>
+
+
+
+
+      
       <form class="d-flex" role="search">
         
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -70,5 +75,9 @@
 </script>
 
 <style  scoped>
-
+.menu-link {
+  text-decoration: none;
+    color: black;
+      font-weight: bold;
+}
 </style>
