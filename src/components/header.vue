@@ -57,6 +57,7 @@
       <form class="d-flex" role="search">
         
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <!-- {{retrievedData}} -->
         <button  id="search" class="btn btn-outline-success me-2" type="submit" >Search</button> 
          <button class="btn btn-outline-success me-2" type="submit">Cart</button> 
          <button class="btn btn-outline-success" type="submit">logout</button>
@@ -73,7 +74,26 @@
 <script>
     export default {
         name:"header",
-    }
+  //        data() {
+  //   return {
+  //     retrievedData: null
+  //   };
+  // },
+  // mounted() {
+  //   this.retrieveDataFromLocalStorage();
+  // },
+  // methods: {
+  //   retrieveDataFromLocalStorage() {
+  //     // Retrieve a value from localStorage
+  //     const storedData = localStorage.getItem('name');
+  //     this.retrievedData=storedData
+
+      
+  //   }
+  // }
+};
+        
+    
 </script>
 
 <style  scoped>
@@ -83,3 +103,11 @@
       font-weight: bold;
 }
 </style>
+
+
+
+
+
+
+
+

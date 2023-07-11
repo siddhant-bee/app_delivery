@@ -8,13 +8,21 @@ import updatemenu from "./components/updatemenu.vue"
 import menu from "./components/menu.vue"
 import adminmenu from "./components/adminmenu.vue"
 
+import order from "./components/order.vue"
+
+
 updatemenu
 const routes=[
    {
-    name:"adminmenu",
-    component:adminmenu,
-    path:"/adminmenu"
+    name:"order",
+    component:order,
+    path:"/order"
    },
+   {
+      name:"adminmenu",
+      component:adminmenu,
+      path:"/adminmenu"
+     },
    {
       name:"menu",
       component:menu,

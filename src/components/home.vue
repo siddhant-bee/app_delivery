@@ -3,6 +3,12 @@
         <Header/>
      
         <Image/>
+
+
+    <footer class="footer">
+      <p>Please give feedback to us and let us know what you like.</p>
+    </footer>
+
     </div>
 </template>
 
@@ -20,5 +26,12 @@ import Image from "./image.vue"
 </script>
 
 <style scoped>
+.footer {
+  background-color: #f5f5f5;
+  padding: 20px;
+  color: black;
+     padding-bottom: 20px;
+  text-align: center;
+}
 
 </style>

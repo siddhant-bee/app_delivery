@@ -15,11 +15,12 @@
       <router-link to="/adminmenu"><button @click="uploadMenu">check Menu</button></router-link>
        
       
-       <router-link to="/updatemenu"> <button @click="updateMenu">Order History</button></router-link>
+       <router-link to="/order"> <button @click="updateMenu">Order History</button></router-link>
     </div>
     <div class="navbar-search">
       <input type="text" v-model="searchQuery" placeholder="Search..." />
       <button @click="search">Search</button>
+
          <button @click="search">Log-out</button>
     </div>
   </nav>
@@ -55,7 +56,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #f0f0f0;
+   background-color: #b9b5b5;
 }
 
 .navbar-logo img {
