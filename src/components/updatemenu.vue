@@ -17,6 +17,7 @@
       </div>
       <div>
         <label for="image">Image:</label>
+       <img :src="selectedImage" class="border border-secondary" width="180" height="200" alt="Uploaded Image">
         <input type="file" id="image" accept="image/*" @change="handleImageUpload" required />
       </div>
       <button type="submit">Add Item</button>
@@ -26,6 +27,7 @@
 
 <script>
 import Adminnavbar from './adminnavbar.vue'
+import axios from "axios"
 export default {
     components:{
             Adminnavbar,
@@ -38,6 +40,8 @@ export default {
       itemDescription: '',
       itemPrice: null,
       itemImage: null,
+      image:[],
+      selectedImage:''
     };
   },
   methods: {
@@ -47,9 +51,21 @@ export default {
         name: this.itemName,
         description: this.itemDescription,
         price: this.itemPrice,
-        image: this.itemImage,
+       
       };
       console.log('New Item:', newItem);
+            const formData = new FormData();
+      for (let i = 0; i < this.image.length; i++) {
+        formData.append("images[]", this.image[i]);
+      }
+      formData.append("item", JSON.stringify(newItem));
+         axios.post('http://localhost:5000/imageUpload',formData)
+  .then(response => {
+   console.log(response)
+  })
+  .catch(error => {
+    console.error(error);
+  });
 
       // Reset form fields
       this.itemName = '';
@@ -57,11 +73,11 @@ export default {
       this.itemPrice = null;
       this.itemImage = null;
     },
-    handleImageUpload(event) {
+     handleImageUpload(event) {
       const file = event.target.files[0];
-      // Logic to handle image upload and retrieve the image URL
-      console.log('Uploaded image:', file);
-      // You can use libraries like FileReader or send the file to your server for processing
+      this.image.push(file)
+      this.selectedImage = URL.createObjectURL(file);
+      console.log(this.selectedImage)
     },
   },
 };
