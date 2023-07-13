@@ -11,8 +11,9 @@
     <h5 class="card-title"> {{menuItem.name}}</h5>
     <p class="card-text">this is a really delicious food .</p>
     <h6>Price - {{menuItem.price}} RS </h6>
-    
-    <a href="#" class="btn btn-primary">Buy now</a>
+    <center>  <Button @click="addtoCart(menuItem)" class="btn btn-primary">Buy now</Button></center>
+  
+  
   </div>
 </div>
     </div>
@@ -80,7 +81,25 @@ methods:{
         return `data:${image.contentType};base64,${base64}`;
        }
 },
+addtoCart(item){
+  console.log(item)
+  const user = JSON.parse(localStorage.getItem('user-info'))
+  console.log(user.id)
+  const data={
+    user_id:user.id,
+    menu_id:item.id,
+    name:item.name,
+    price:item.price
+  }
 
+  axios.post("http://localhost:5000/addtocart",data)
+  .then(response=>{
+    console.log(response)
+  })
+  .catch(err=>{
+    console.log(err)
+  })
+}
 }
 };
 
