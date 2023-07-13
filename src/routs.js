@@ -7,17 +7,23 @@ import adminhome from "./components/adminhome.vue"
 import updatemenu from "./components/updatemenu.vue"
 import menu from "./components/menu.vue"
 import adminmenu from "./components/adminmenu.vue"
-
+cartPage
 import order from "./components/order.vue"
+import cartPage from "./components/cartPage.vue"
 
 
 updatemenu
 const routes=[
    {
-    name:"order",
-    component:order,
-    path:"/order"
+    name:"cartPage",
+    component:cartPage,
+    path:"/cartPage"
    },
+   {
+      name:"order",
+      component:order,
+      path:"/order"
+     },
    {
       name:"adminmenu",
       component:adminmenu,
