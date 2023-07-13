@@ -62,7 +62,7 @@
         <router-link to="/cartPage" class="menu-link"><button class="btn btn-outline-success me-2" type="submit">Cart</button> </router-link>
 
          
-         <button class="btn btn-outline-success" type="submit">logout</button>
+         <button class="btn btn-outline-success" type="submit"  @click="logout">logout</button>
       </form>
     </div>
   </div>
@@ -76,6 +76,14 @@
 <script>
     export default {
         name:"header",
+        methods:{
+        logout()
+        {
+            localStorage.clear();
+            this.$router.push({name:'login'})
+            console.warn("logout");
+        }
+    }
   //        data() {
   //   return {
   //     retrievedData: null
