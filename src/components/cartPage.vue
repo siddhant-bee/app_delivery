@@ -11,11 +11,11 @@
         <img class="product-image" :src="product.imageUrl" alt="">
         <div class="details-wrap">
             <h3>{{ product.name }}</h3>
-            <p>RS{{ product.price }}</p>
+            <p>RS {{ product.price }}</p>
           </div>
           <button class="remove-button">Remove Item</button>
        </div>
-        <h3 id="total-price">Total: RS{{ totalprice }}</h3>
+        <h3 id="total-price">Total: RS {{ amount }}</h3>
         <button id="checkout-button">Checkout</button>
     </div>
    </div>
@@ -23,19 +23,41 @@
 
 <script>
 import Header from "./header.vue"
+import axios from "axios"
 export default {
   name:"cartPage",
 components:{
   Header
 },
+created(){
+  const user = JSON.parse(localStorage.getItem('user-info'))
+  const id = user.id
+  console.log(id)
+  axios.get('http://localhost:5000/cartInfo/'+id)
+        .then(response => {
+          console.log(response.data)
+       
+           this.cartItems = response.data;
+              if(this.cartItems.length==0){
+          this.amount =0
+        }else{
+            for(let i = 0;i<this.cartItems.length;i++){
+              this.amount = this.amount+this.cartItems[i].price;
+            }
+        }
+   
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+},
   
   data() {
     return {
       cartItems: [
-        { id: 1, name: 'Item 1', price: 10 },
-        { id: 2, name: 'Item 2', price: 15 },
-        { id: 3, name: 'Item 3', price: 20 },
+
       ],
+      amount:0
     };
   },
   methods: {
