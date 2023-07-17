@@ -7,13 +7,13 @@
     <div id="page-wrap">
         <h2> Shopping Cart</h2>
         <hr>
-       <div v-for="product in cartItems" class="product-container" v-bind:key="cartItems.id">
-        <img class="product-image" :src="product.imageUrl" alt="">
+       <div v-for="product in cartItems" class="product-container" v-bind:key="product.id">
+        <!-- <img class="product-image" :src="product.imageUrl" alt=""> -->
         <div class="details-wrap">
             <h3>{{ product.name }}</h3>
             <p>RS {{ product.price }}</p>
           </div>
-          <button class="remove-button">Remove Item</button>
+          <button class="remove-button" @click="removeitem(product.id)">Remove Item</button>
        </div>
         <h3 id="total-price">Total: RS {{ amount }}</h3>
         <button id="checkout-button">Checkout</button>
@@ -61,8 +61,24 @@ created(){
     };
   },
   methods: {
+    removeitem(id){
+      const data={
+        id:id
+      }
+      console.log(id)
+      axios.post("http://localhost:5000/delete",data)
+      .then(resposnse=>{
+        console.log(resposnse)
+              this.cartItems = this.cartItems.filter((val,idx)=>val.id!=id)
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+
+
+    },
     checkout() {
-      // Perform checkout logic here
+      
       console.log('Checkout clicked!');
     },
   },
