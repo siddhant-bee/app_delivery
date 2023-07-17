@@ -97,7 +97,7 @@ addtoCart(item){
   axios.post("http://localhost:5000/addtocart",data)
   .then(response=>{
     console.log(response)
-      alert("added succesfully ")
+      alert(` added to cart `)
   })
   .catch(err=>{
     console.log(err)

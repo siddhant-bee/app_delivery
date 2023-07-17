@@ -33,7 +33,7 @@ const routes=[
       name:"menu",
       component:menu,
       path:"/menu"
-     },,
+     },
    {
       name:"home",
       component:home,

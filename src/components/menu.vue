@@ -19,9 +19,10 @@
 
  <p class="price">Price: RS  {{ menuItem.price }}</p>
             </div>
+   <button class="my-button" @click="delete_menu(menuItem.id)">Delete item </button>
+
         </div>
 
-      <h3></h3>
      
     </div>
   </div>
@@ -40,6 +41,25 @@ Header
       menuItems: []
     };
   },
+  methods:{
+    delete_menu(id){
+      console.log(id);
+        const data={
+        id:id
+      }
+      axios.post("http://localhost:5000/delete_menu",data)
+      .then(resposnse=>{
+        console.log(resposnse)
+              // this.cartItems = this.cartItems.filter((val,idx)=>val.id!=id)
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+
+
+
+    }
+  },
   created() {
 
     axios.get('http://localhost:5000/menu')
@@ -55,6 +75,22 @@ Header
 </script>
 
 <style>
+
+
+.my-button {
+  padding: 10px 20px;
+  background-color: #17f5f5;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.my-button:hover {
+  background-color: #ffffff;
+}
+
+
 .menu-item {
   margin-bottom: 10px;
   display: flex;

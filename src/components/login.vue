@@ -39,7 +39,10 @@ export default {
               localStorage.setItem("user-info",JSON.stringify(result.data[0]))
               console.log((result.data[0]))
                if(result.data[0].role=='USER' )
+               {
               this.$router.push({name:'home'})
+                
+               }
               else{
                 this.$router.push({name:'adminhome'})
               }

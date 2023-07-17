@@ -47,10 +47,57 @@ app.get('/user', (req, res)=>{
     });
     client.end;
 })
+// delete item from cart
+app.post("/delete", (req,res)=>{
+    console.log(req.body)
+    const id = req.body.id
+    try{
+       const query = `DELETE FROM cart_info WHERE id = ${id}`
+     client.query(query,(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            res.status(200).send("Item deleted.")
+        }
+       })
+    }catch(err){
+
+    }
+})
+
+
+// delete menu 
+// app.post("/delete_menu", (req,res)=>{
+//     console.log(req.body)
+//     const id = req.body.id
+//     try{
+//        const query = `DELETE FROM menu WHERE id = ${id}`
+//      client.query(query,(err,result)=>{
+//         if(err){
+//             console.log(err)
+//         }
+//         else{
+//             res.status(200).send("Item deleted.")
+//         }
+//        })
+//     }catch(err){
+
+//     }
+// })
+
+
+
+
+
+
+
+
+
 
 // menu 
 app.get('/menu', (req, res)=>{
-    client.query(`Select * from public.menu`, (err, result)=>{
+    client.query(`Select * from public.menu `, (err, result)=>{
         if(!err){
             res.send(result.rows);
             // console.log(result.rows)
@@ -129,15 +176,63 @@ app.post("/imageUpload", upload.array("images[]") ,async (req,res)=>{
 
 app.post("/addtocart",async (req,res)=>{
     console.log(req.body)
-    const {user_id,menu_id,name,price} = req.body
+    let {user_id,menu_id,name,price} = req.body
+
     try{
-    const insertQuery ="INSERT INTO cart_info (userId,menu_id,name,price) values ($1,$2,$3,$4)"
-    const {rows} = await client.query(insertQuery,[user_id,menu_id,name,price])    
-    console.log(rows)
-    return res.status(200).json({mess:"product added to cart"})
+        const query = `select * from cart_info where menu_id = ${menu_id}`
+        client.query(query,(err,result)=>{
+            if(err){
+                console.log(err)
+            }
+            else{
+               if(result.rows.length>0){
+               const quantity= result.rows[0].quantity +1
+               price = quantity * price
+               const updateQuery = `UPDATE cart_info
+               SET quantity = ${quantity}, price = ${price}
+               WHERE  menu_id = ${menu_id};`
+               client.query(updateQuery,(err,result)=>{
+                if(err){
+                    console.log(err)
+                }
+                else{
+                    res.status(200).send("added to cart")
+                }
+               })
+
+               }else{
+                const insertQuery ="INSERT INTO cart_info (userId,menu_id,name,price) values ($1,$2,$3,$4)"
+                const {rows} = client.query(insertQuery,[user_id,menu_id,name,price])    
+                console.log(rows)
+                return res.status(200).json({mess:"product added to cart"})
+               }
+            }
+        })
+
 }
 catch(err){
     console.log(err)
     return res.status(500).json({mess:err})
 }
+})
+
+
+// cart info
+
+app.get('/cartInfo/:id',(req,res)=>{
+    const id = req.params.id
+    
+    const query = `SELECT * FROM cart_info WHERE userId = ${id}`
+    
+    client.query(query, (err, result)=>{
+        if(!err){
+    
+                return res.send(result.rows)
+            
+        }
+        
+    })
+    const  rows = client.query(query)
+    console.log(rows)
+    
 })
