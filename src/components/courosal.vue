@@ -15,16 +15,14 @@
         </div>
         <div class="carousel-item">
           <img
-            src="https://c.ndtvimg.com/2021-04/umk8i7ko_pasta_625x300_01_April_21.jpg?im=FaceCrop,algorithm=dnn,width=1200,height=886"
+           
+            src="../assets/image7.jpg"
             class="d-block w-100"
             alt="..."
           />
         </div>
         <div class="carousel-item">
-          <img
-src="../assets/image1.jpg"           class="d-block w-100"
-            alt="..."
-          />
+          <img src="../assets/image1.jpg" class="d-block w-100" alt="..."/>
         </div>
       </div>
       <button
@@ -59,6 +57,8 @@ export default {
   margin-top: 30px;
   margin-bottom: 50px;
   justify-content: center;
+  
+
 }
 .yuvraj {
   width: 74%;
@@ -68,6 +68,5 @@ export default {
 .d-block {
   padding: 10px;
   height: 420px;
-  
 }
 </style>

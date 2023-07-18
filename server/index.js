@@ -107,7 +107,38 @@ app.get('/menu', (req, res)=>{
     client.end;
 })
 
+//checkout
 
+
+app.post('/checkout/:id' ,(req,res)=>{
+    const id = req.params.id
+    const query = `select * from cart_info where userid =${id}`
+    client.query(query,(err,results)=>{
+        if(err){
+            console.log(err)
+        }else{
+            for(let i=0;results.rows.length>i;i++){
+                console.log(results.rows[i])
+                let { id,userid,name,price,menu_id,quantity} = results.rows[i]
+                const query =`insert into checkout (menu_name,price,user_id) values ('${name}',${price},${userid})`
+                client.query(query,(err,result)=>{
+                    if(err){
+                        console.log(err)
+                    }else{
+                        const query =`delete from cart_info where userid=${userid}`
+                        client.query(query,(err,result)=>{
+                            if(err){
+                                console.log(err)
+                            }else{
+                               return res.json({user:1})
+                            }
+                        })
+                    }
+                })
+            }
+        }
+    })
+})
 
 
 

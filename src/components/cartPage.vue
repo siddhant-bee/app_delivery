@@ -16,7 +16,7 @@
           <button class="remove-button" @click="removeitem(product.id)">Remove Item</button>
        </div>
         <h3 id="total-price">Total: RS {{ amount }}</h3>
-        <button id="checkout-button">Checkout</button>
+        <button id="checkout-button" @click="checkout" >Checkout</button>
     </div>
    </div>
 </template>
@@ -80,6 +80,7 @@ mounted(){
     checkout() {
       
       console.log('Checkout clicked!');
+       this.$router.push({name:'userinfo'})
     },
   },
 };

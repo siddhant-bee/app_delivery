@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="head">
 
 
 
@@ -11,7 +11,9 @@
 
 <nav class="navbar bg-body-tertiary" >
   <div class="container-fluid">
-      <router-link to="/"> <img src="../assets/download.jpeg" alt="Logo" width="80" height="80" /></router-link>
+      <router-link to="/"> 
+      <img src="../assets/download.jpeg" alt="Logo" width="80" height="80" />
+      </router-link>
       
     
     <a class="navbar-brand" href="#" >
@@ -107,6 +109,9 @@
 </script>
 
 <style  scoped>
+.head{
+  
+}
 .menu-link {
   text-decoration: none;
     color: black;

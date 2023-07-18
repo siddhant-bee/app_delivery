@@ -6,13 +6,13 @@
  <div v-for="menuItem in menuItems" :key="menuItem.id" class="menu-item">
 <div class="card" style="width: 18rem; "  >
 
-  <img :src="menuItem.image" class="card-img-top" alt="...">
+  <img :src="menuItem.image" class="card-img-top sex" alt="...">
   <div class="card-body">
     <h5 class="card-title"> {{menuItem.name}}</h5>
     <p class="card-text">this is a really delicious food .</p>
     <h6>Price - {{menuItem.price}} RS </h6>
     
-    <a href="#" class="btn btn-primary">Buy now</a>
+    
   </div>
 </div>
     </div>
@@ -115,6 +115,10 @@ methods:{
   color: black;
   padding-top: 20px;
   text-align: center;
+}
+.sex{
+    height: 200px;
+  width: 286px;
 }
 </style>
 

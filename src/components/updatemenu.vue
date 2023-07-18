@@ -1,47 +1,62 @@
 <template>
   <div>
-    <Adminnavbar/>
-    <h1>Update Menu</h1>
-    <form @submit.prevent="addItem">
-      <div>
-        <label for="name">Name:</label>
-        <input type="text" id="name" v-model="itemName" required />
-      </div>
-      <!-- <div>
+    <Adminnavbar />
+    <div class="menu">
+      <h1>Update Menu</h1>
+      <div class="menu-details">
+        <form @submit.prevent="addItem">
+          <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" v-model="itemName" required />
+          </div>
+          <!-- <div>
         <label for="description">Description:</label>
         <textarea id="description" v-model="itemDescription" required></textarea>
       </div> -->
-      <div>
-        <label for="price">Price:</label>
-        <input type="number" id="price" v-model="itemPrice" required />
+          <div>
+            <label for="price">Price:</label>
+            <input type="number" id="price" v-model="itemPrice" required />
+          </div>
+          <div>
+            <label for="image">Image:</label>
+            <img
+              :src="selectedImage"
+              class="border border-secondary"
+              width="180"
+              height="200"
+              alt="Uploaded Image"
+            />
+            <input
+              type="file"
+              id="image"
+              accept="image/*"
+              @change="handleImageUpload"
+              required
+            />
+          </div>
+          <button type="submit">Add Item</button>
+        </form>
       </div>
-      <div>
-        <label for="image">Image:</label>
-       <img :src="selectedImage" class="border border-secondary" width="180" height="200" alt="Uploaded Image">
-        <input type="file" id="image" accept="image/*" @change="handleImageUpload" required />
-      </div>
-      <button type="submit">Add Item</button>
-    </form>
+    </div>
   </div>
 </template>
 
 <script>
-import Adminnavbar from './adminnavbar.vue'
-import axios from "axios"
+import Adminnavbar from "./adminnavbar.vue";
+import axios from "axios";
 export default {
-    components:{
-            Adminnavbar,
-
-        },
-    name:"updatemenu",
+  components: {
+    Adminnavbar,
+  },
+  name: "updatemenu",
   data() {
     return {
-      itemName: '',
-      itemDescription: '',
+      itemName: "",
+      itemDescription: "",
       itemPrice: null,
       itemImage: null,
-      image:[],
-      selectedImage:''
+      image: [],
+      selectedImage: "",
     };
   },
   methods: {
@@ -51,34 +66,48 @@ export default {
         name: this.itemName,
         description: this.itemDescription,
         price: this.itemPrice,
-       
       };
-      console.log('New Item:', newItem);
-            const formData = new FormData();
+      console.log("New Item:", newItem);
+      const formData = new FormData();
       for (let i = 0; i < this.image.length; i++) {
         formData.append("images[]", this.image[i]);
       }
       formData.append("item", JSON.stringify(newItem));
-         axios.post('http://localhost:5000/imageUpload',formData)
-  .then(response => {
-   console.log(response)
-  })
-  .catch(error => {
-    console.error(error);
-  });
+      axios
+        .post("http://localhost:5000/imageUpload", formData)
+        .then((response) => {
+          console.log(response);
+          this.image=[]
+          this.selectedImage=''
+        })
+        .catch((error) => {
+          console.error(error);
+        });
 
       // Reset form fields
-      this.itemName = '';
-      this.itemDescription = '';
+      this.itemName = "";
+      this.itemDescription = "";
       this.itemPrice = null;
       this.itemImage = null;
     },
-     handleImageUpload(event) {
+    handleImageUpload(event) {
       const file = event.target.files[0];
-      this.image.push(file)
+      this.image.push(file);
       this.selectedImage = URL.createObjectURL(file);
-      console.log(this.selectedImage)
+      console.log(this.selectedImage);
     },
   },
 };
 </script>
+<style scoped>
+.menu {
+  display: flex;
+  justify-content: center;
+  
+}
+.menu-details{
+   display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+</style>

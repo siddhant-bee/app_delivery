@@ -2,8 +2,14 @@ import router from '@/routes';
 
 <template>
 
-  <div class="allcover">
+  <div class="allcover">  
     <img class="logo" src="../assets/download.jpeg" alt="" />
+
+      <div>
+    <img src="@/assets/slidebank+login.gif" alt="My GIF">
+  </div>
+   
+
   <h1>login</h1>
   <div class="login">
     <input type="text " v-model="email" placeholder=" Enter Email" />
@@ -14,7 +20,6 @@ import router from '@/routes';
     </p>
   </div>
   </div>
-  
 </template>
 
 <script>
@@ -71,22 +76,35 @@ export default {
 .allcover{
   text-align: center;
 }
+
+.login input:hover {
+ box-shadow: #686767 2px 2px 5px 5px;
+}
+
 .login input {
   width: 300px;
   height: 40px;
+   border-radius: 15px;
   padding-left: 20px;
   display: BLOCK;
   
 margin-bottom: 30px;
   margin-left: auto;
   margin-right: auto;
-  border: 1px SOLID skyblue;
+  border: 1px SOLID #ff7e01;
 }
+
+.login button:hover {
+ box-shadow: #686767 5px 5px 5px 5px;
+}
+
 .login button {
   width: 320px;
   height: 40px;
-  border: 1px solid skyblue;
-  background-color: skyblue;
+   border-radius: 15px;
+  border: 1px  #ff7e01;
+  background-color:#ff7e01;
   cursor: pointer;
 }
+
 </style>

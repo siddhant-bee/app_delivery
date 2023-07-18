@@ -24,4 +24,8 @@ export default {
   color: #2c3e50;
   margin-top: 0px;
 }
+/* img{
+  height: 200px;
+  width: 200px;
+} */
 </style>

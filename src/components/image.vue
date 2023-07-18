@@ -6,7 +6,7 @@
  <div v-for="menuItem in menuItems" :key="menuItem.id" class="menu-item">
 <div class="card" style="width: 18rem; "  >
 
-  <img :src="menuItem.image" class="card-img-top" alt="...">
+  <img :src="menuItem.image" class="card-img-top sid" alt="...">
   <div class="card-body">
     <h5 class="card-title"> {{menuItem.name}}</h5>
     <p class="card-text">this is a really delicious food .</p>
@@ -113,6 +113,9 @@ addtoCart(item){
 </script>
 
 <style scoped>
+.sid{
+  height: 250px;
+}
 .card{
     margin-top: 10px;
     
@@ -133,6 +136,9 @@ addtoCart(item){
   color: black;
   padding-top: 20px;
   text-align: center;
+}
+.card-body{
+  margin-bottom: 0px;
 }
 </style>
 
