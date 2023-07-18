@@ -29,7 +29,7 @@ export default {
 components:{
   Header
 },
-created(){
+mounted(){
   const user = JSON.parse(localStorage.getItem('user-info'))
   const id = user.id
   console.log(id)

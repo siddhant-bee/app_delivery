@@ -19,6 +19,8 @@
 
  <p class="price">Price: RS  {{ menuItem.price }}</p>
             </div>
+                <button class="my-button" @click="delete_menu(menuItem.id)">Delete item </button>
+
         </div>
 
       <h3></h3>
@@ -42,6 +44,25 @@ export default {
     return {
       menuItems: []
     };
+  },
+  methods:{
+    delete_menu(id){
+      console.log(id);
+        const data={
+        id:id
+      }
+      axios.post("http://localhost:5000/delete_menu",data)
+      .then(resposnse=>{
+        console.log(resposnse)
+              // this.cartItems = this.cartItems.filter((val,idx)=>val.id!=id)
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+
+
+
+    }
   },
   created() {
 

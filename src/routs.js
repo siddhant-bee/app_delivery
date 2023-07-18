@@ -10,11 +10,21 @@ import adminmenu from "./components/adminmenu.vue"
 cartPage
 import order from "./components/order.vue"
 import cartPage from "./components/cartPage.vue"
-
+import courosal from "./components/courosal.vue"
+import test from "./components/test.vue"
 
 updatemenu
 const routes=[
    {
+      name:"test",
+      component:test,
+      path:"/test"
+     },
+     {
+      name:"courosal",
+      component:courosal,
+      path:"/courosal"
+     },{
     name:"cartPage",
     component:cartPage,
     path:"/cartPage"

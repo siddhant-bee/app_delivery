@@ -16,12 +16,14 @@
        
       
        <router-link to="/order"> <button @click="updateMenu">Order History</button></router-link>
+              <router-link to="/order"> <button @click="updateMenu">All Users </button></router-link>
+
     </div>
     <div class="navbar-search">
       <input type="text" v-model="searchQuery" placeholder="Search..." />
       <button @click="search">Search</button>
 
-         <button @click="search">Log-out</button>
+         <button @click="logout">Log-out</button>
     </div>
   </nav>
 </template>
@@ -42,10 +44,13 @@ export default {
     uploadMenu() {
       // Logic for uploading the menu
     },
-    search() {
-      // Logic for performing the search
-      console.log('Search query:', this.searchQuery);
-    },
+        logout()
+        {
+            localStorage.clear();
+            this.$router.push({name:'login'})
+            console.warn("logout");
+        }
+    
   },
 };
 </script>

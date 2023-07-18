@@ -1,7 +1,9 @@
 <template>
     <div>
         <Header/>
-     
+        <H2 class="best">Try Our Bestseller</H2>
+      <Courosal/>
+       <H2 class="best">Explore More ....</H2>
         <Image/>
 
 
@@ -15,11 +17,13 @@
 <script>
 import Header from "./header.vue"
 import Image from "./image.vue"
+import Courosal from "./courosal.vue"
     export default {
         name: 'home',
         components:{
             Header,
-            Image
+            Image,
+            Courosal
           
         }
     }
@@ -33,5 +37,7 @@ import Image from "./image.vue"
      padding-bottom: 20px;
   text-align: center;
 }
-
+.best{
+    text-align: center;
+}
 </style>
