@@ -114,6 +114,7 @@ methods:{
   padding: 20px;
   color: black;
   padding-top: 20px;
+  margin-top: 15px;
   text-align: center;
 }
 .sex{

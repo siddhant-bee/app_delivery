@@ -90,14 +90,23 @@ app.post("/delete", (req,res)=>{
 
 
 
+//get order
 
-
-
+app.get('/getorder', (req, res)=>{
+    client.query(`Select * from public.menu `, (err, result)=>{
+        if(!err){
+            res.send(result.rows);
+            // console.log(result.rows)
+            
+        }
+    });
+    client.end;
+})
 
 
 // menu 
 app.get('/menu', (req, res)=>{
-    client.query(`Select * from public.menu `, (err, result)=>{
+    client.query(`Select * from checkout `, (err, result)=>{
         if(!err){
             res.send(result.rows);
             // console.log(result.rows)

@@ -3,16 +3,12 @@
     <Adminnavbar />
     <div class="menu">
       <h1>Update Menu</h1>
-      <div class="menu-details">
-        <form @submit.prevent="addItem">
+     
+        <form class="ff" @submit.prevent="addItem">
           <div>
             <label for="name">Name:</label>
             <input type="text" id="name" v-model="itemName" required />
           </div>
-          <!-- <div>
-        <label for="description">Description:</label>
-        <textarea id="description" v-model="itemDescription" required></textarea>
-      </div> -->
           <div>
             <label for="price">Price:</label>
             <input type="number" id="price" v-model="itemPrice" required />
@@ -36,7 +32,7 @@
           </div>
           <button type="submit">Add Item</button>
         </form>
-      </div>
+      
     </div>
   </div>
 </template>
@@ -109,5 +105,8 @@ export default {
    display: flex;
   justify-content: center;
   margin-top: 100px;
+}
+.ff{
+  padding: 10px;
 }
 </style>
