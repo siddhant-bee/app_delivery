@@ -1,42 +1,39 @@
 <template>
-  <div>
-    <Adminnavbar />
+  <div class="main">
+    <div><Adminnavbar /></div>
     <div class="menu">
       <h1>Update Menu</h1>
-     
-        <form class="ff" @submit.prevent="addItem">
-          <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" v-model="itemName" required />
-          </div>
-          <div>
-            <label for="price">Price:</label>
-            <input type="number" id="price" v-model="itemPrice" required />
-          </div>
-          <div>
-            <label for="image">Image:</label>
-            <img
-              :src="selectedImage"
-              class="border border-secondary"
-              width="180"
-              height="200"
-              alt="Uploaded Image"
-            />
-            <input
-              type="file"
-              id="image"
-              accept="image/*"
-              @change="handleImageUpload"
-              required
-            />
-          </div>
-          <button type="submit">Add Item</button>
-        </form>
-      
+      <form class="form-menu" @submit.prevent="addItem">
+        <div class="gg ">
+          <label for="name">Name:</label>
+          <input type="text" id="name" v-model="itemName" required />
+        </div>
+        <div class="gg">
+          <label for="price">Price:</label>
+          <input type="number" id="price" v-model="itemPrice" required />
+        </div>
+        <div class="gg">
+          <label for="image">Image:</label>
+          <img
+            :src="selectedImage"
+            class="border border-secondary"
+            width="180"
+            height="200"
+            alt=""
+          />
+          <input class="selectFile"
+            type="file"
+            id="image"
+            accept="image/*"
+            @change="handleImageUpload"
+            required
+          />
+        </div>
+        <button  type="submit" >Add Item</button>
+      </form>
     </div>
   </div>
 </template>
-
 <script>
 import Adminnavbar from "./adminnavbar.vue";
 import axios from "axios";
@@ -73,13 +70,13 @@ export default {
         .post("http://localhost:5000/imageUpload", formData)
         .then((response) => {
           console.log(response);
-          this.image=[]
-          this.selectedImage=''
+          this.image = [];
+          this.selectedImage = "";
+          alert("added succesfully")
         })
         .catch((error) => {
           console.error(error);
         });
-
       // Reset form fields
       this.itemName = "";
       this.itemDescription = "";
@@ -96,17 +93,85 @@ export default {
 };
 </script>
 <style scoped>
-.menu {
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+/* Styling for the main container */
+.main {
+  background-color: #fdf4dfbe;
+  width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  
+  margin: 0 auto;
 }
-.menu-details{
-   display: flex;
-  justify-content: center;
-  margin-top: 100px;
+/* Styling for the menu container */
+.menu {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+   box-shadow: #686767 2px 2px 5px 5px;
+  width: 800px;
+  align-self: center;
+  padding: 20px;
+  background-color: #F9F9F9;
 }
-.ff{
-  padding: 10px;
+/* Styling for the h1 element inside the menu container */
+.menu h1 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+/* Styling for the form inside the menu container */
+.form-menu {
+  display: grid;
+  max-width: 800px;
+  gap: 10px;
+}
+/* Styling for the form input elements and labels */
+.gg {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 10px;
+}
+.gg label {
+  font-weight: bold;
+  align-self: center;
+}
+.gg input[type="text"],
+.gg input[type="number"] {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 100%;
+}
+/* Styling for the image and file input */
+.gg img {
+  max-width: 180px;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+.gg input[type="file"] {
+  display: block;
+  margin-top: 5px;
+}
+/* Styling for the Add Item button */
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+button[type="submit"]:hover {
+  background-color: #0056B3;
 }
 </style>

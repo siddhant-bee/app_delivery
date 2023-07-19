@@ -2,11 +2,11 @@
   <div>
     <Adminnavbar/>
 <h1>Here i ll display the order</h1>
-<div v-for="ord in order" :key="order.userid">
+<div v-for="ord in order" :key="order.id">
 
  <div class="bda">
    <div class="box">
-    <div class="name">{{ord.name}} </div>
+    <div class="name">{{ord.menu_name}} </div>
     <div class="price">{{ord.price}} </div>
   </div>
  </div>

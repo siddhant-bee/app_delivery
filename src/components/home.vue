@@ -1,6 +1,7 @@
 <template>
+  <Header/>
     <div>
-        <Header/>
+      
          <div class="background-image">
          
          </div>
