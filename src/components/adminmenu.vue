@@ -110,5 +110,7 @@ export default {
   margin: 10px;
   background-color: antiquewhite;
   border-radius: 8px;
+}::v-deep  .menucheck {
+  background-color: #d87373; /* Change to your desired background color */
 }
 </style>

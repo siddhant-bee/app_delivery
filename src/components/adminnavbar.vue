@@ -26,19 +26,22 @@
         </div>
       </div>
     </div>
-    <div class="side-navbar ">
+    <div class="side-navbar bg-light ">
       <div class="menu">
+
+         <router-link to="/adminhome">
+          <button class="homee" @click="updateMenu">Home </button></router-link>
         <router-link to="/updatemenu">
-          <button @click="updateMenu">Upload Menu</button></router-link
+          <button class="menuupdate" @click="updateMenu">Upload Menu</button></router-link
         >
         <router-link to="/adminmenu"
-          ><button @click="uploadMenu">check Menu</button></router-link
+          ><button class="menucheck" @click="uploadMenu">check Menu</button></router-link
         >
         <router-link to="/order">
-          <button @click="updateMenu">Order History</button></router-link
+          <button @click="updateMenu"  class="orderhistory"  >Order History</button></router-link
         >
         <router-link to="/allUser">
-          <button >All Users</button></router-link
+          <button class="alluser" >All Users</button></router-link
         >
       </div>
     </div>
@@ -81,6 +84,7 @@ export default {
 background: rgb(238,174,202);
 background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(148,187,233,0) 100%);
   justify-content: space-between;
+  align-items: center;
   flex-direction: row;
   height: 100%;
 }

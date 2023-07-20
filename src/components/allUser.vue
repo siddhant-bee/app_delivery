@@ -82,4 +82,7 @@ export default {
   flex: 2;
   color: #333;
 }
+::v-deep  .alluser {
+  background-color: #5f9cc5; /* Change to your desired background color */
+}
 </style>

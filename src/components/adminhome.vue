@@ -105,4 +105,7 @@ img{border-radius: 20px;}
   height: 200px;
   width: 286px;
 }
+::v-deep  .homee {
+  background-color: #5f9cc5; /* Change to your desired background color */
+}
 </style>
