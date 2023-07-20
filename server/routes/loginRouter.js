@@ -1,5 +1,5 @@
 const express = require('express')
-// const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 const client = require('../connection/db.js')
 const bodyParser = require('body-parser')
 
@@ -16,8 +16,13 @@ router.post('/login', (req, res)=>{
     // console.log(query);
     client.query(`Select * from  public.user where email='${email}' and password='${password}'`, (err, result)=>{
         if(!err){
-            res.send(result.rows);
-            
+            const token = jwt.sign({id: result.rows[0].id, role: result.rows[0].role}, process.env.SECRET_KEY)
+            console.log(token);
+            res.send({
+                id: result.rows[0].id,
+                token: token,
+                role: result.rows[0].role
+            });
         }
     });
     client.end;
