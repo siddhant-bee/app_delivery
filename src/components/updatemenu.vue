@@ -19,7 +19,7 @@
             class="border border-secondary"
             width="180"
             height="200"
-            alt=""
+            alt="hey there"
           />
           <input class="selectFile"
             type="file"
@@ -72,7 +72,6 @@ export default {
           console.log(response);
           this.image = [];
           this.selectedImage = "";
-          alert("added succesfully")
         })
         .catch((error) => {
           console.error(error);
@@ -109,8 +108,8 @@ export default {
 }
 /* Styling for the menu container */
 .menu {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 10%;
+  margin-left: 15%;
   border: 1px solid #ccc;
   border-radius: 20px;
    box-shadow: #686767 2px 2px 5px 5px;
