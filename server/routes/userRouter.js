@@ -14,7 +14,10 @@ const router = express.Router()
 router.use(bodyParser.json())
 router.use(authenticate)
 
-
+//check 
+router.get('/checkuser',(req,res)=>{
+    res.send('authorised')
+})
 
 
 //delete item from cart

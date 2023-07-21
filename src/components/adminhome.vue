@@ -34,7 +34,7 @@
 import axios from "axios";
 import Adminnavbar from "./adminnavbar.vue";
 export default {
-  name: "image",
+  name: "imAge",
   components: {
     Adminnavbar,
   },
@@ -44,8 +44,10 @@ export default {
     };
   },
   created() {
+        const token = localStorage.getItem("token")
+    axios.defaults.headers.common['Authorization'] = token;
     axios
-      .get("http://localhost:5000/menu")
+      .get("http://localhost:5000/menuadmin")
       .then((response) => {
         console.log(response.data);
         this.menuItems = response.data;
@@ -56,6 +58,7 @@ export default {
       })
       .catch((error) => {
         console.error("Error:", error);
+        this.$router.push({name:'home'})
       });
   },
   methods: {

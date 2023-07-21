@@ -44,6 +44,7 @@ export default {
       })
       .catch((err) => {
         console.error(err.message);
+          this.$router.push({name:'home'})
       });
   },
 };

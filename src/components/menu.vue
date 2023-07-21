@@ -35,6 +35,7 @@ import axios from 'axios';
 import Header from "./header.vue"
 
 export default {
+ 
     components:{
 Header
     },
@@ -53,6 +54,22 @@ Header
         .catch(error => {
           console.error('Error:', error);
         });
+
+
+                      const token = localStorage.getItem("token")
+    axios.defaults.headers.common['Authorization'] = token;
+    axios.get('http://localhost:5000/checkuser').then((response) => {
+console.log(response)
+    }
+    )
+    .catch(err=>{
+      console.log(err)
+         this.$router.push({name:'signup'})
+    })
+       
+
+
+
   },
 
 };

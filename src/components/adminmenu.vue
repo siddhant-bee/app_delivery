@@ -29,7 +29,7 @@ import Adminnavbar from "./adminnavbar.vue";
 import axios from "axios";
 
 export default {
-  name: "adminmenu",
+  name: "adminMenu",
   components: {
     Adminnavbar,
   },
@@ -44,6 +44,7 @@ export default {
       const data = {
         id: id,
       };
+      
       axios
         .post("http://localhost:5000/delete_menu", data)
         .then((resposnse) => {
@@ -63,6 +64,7 @@ export default {
       })
       .catch((error) => {
         console.error("Error:", error);
+          this.$router.push({name:'home'})
       });
   },
 };

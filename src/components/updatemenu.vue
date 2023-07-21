@@ -41,7 +41,7 @@ export default {
   components: {
     Adminnavbar,
   },
-  name: "updatemenu",
+  name: "updateMenu",
   data() {
     return {
       itemName: "",
@@ -51,6 +51,19 @@ export default {
       image: [],
       selectedImage: "",
     };
+  },
+  created(){
+             const token = localStorage.getItem("token")
+    axios.defaults.headers.common['Authorization'] = token;
+    axios.get('http://localhost:5000/check').then((response) => {
+console.log(response)
+    }
+    )
+    .catch(err=>{
+      console.log(err)
+         this.$router.push({name:'home'})
+    })
+
   },
   methods: {
     addItem() {
@@ -66,15 +79,20 @@ export default {
         formData.append("images[]", this.image[i]);
       }
       formData.append("item", JSON.stringify(newItem));
+              const token = localStorage.getItem("token")
+    axios.defaults.headers.common['Authorization'] = token;
       axios
         .post("http://localhost:5000/imageUpload", formData)
         .then((response) => {
           console.log(response);
           this.image = [];
           this.selectedImage = "";
+          alert("Item Added");
         })
         .catch((error) => {
           console.error(error);
+        
+          
         });
       // Reset form fields
       this.itemName = "";

@@ -29,6 +29,11 @@ router.get('/getorder', (req, res)=>{
     client.end;
 })
 
+//check admin
+router.get('/check',(req,res)=>{
+    res.send('authorised')
+})
+
 //get all user
 
 router.get('/user', (req, res)=>{
@@ -41,6 +46,18 @@ router.get('/user', (req, res)=>{
     });
     client.end;
 })
+router.get('/menuadmin', (req, res)=>{
+    // console.log(req)
+    client.query(`Select * from menu `, (err, result)=>{
+        if(!err){
+            console.log("authenticated")
+            res.send(result.rows);
+            // console.log(result.rows 
+        }
+    });
+    client.end;
+})
+
 
 
 

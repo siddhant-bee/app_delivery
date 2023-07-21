@@ -32,7 +32,7 @@
 <script>
 import axios from 'axios'
 export default {
-  name: 'userinfo',
+  name: 'userInfo',
   data() {
     return {
       formData: {
@@ -52,7 +52,7 @@ export default {
       axios.post('http://localhost:5000/checkout/'+id,this.formData)
       .then(response=>{
         console.log("checkout successfully")
-        this.$router.push({name:'home'})
+        this.$router.push({name:'thankyou'})
       })
     },
   },

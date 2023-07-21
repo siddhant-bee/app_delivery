@@ -7,12 +7,13 @@ import adminhome from "./components/adminhome.vue"
 import updatemenu from "./components/updatemenu.vue"
 import menu from "./components/menu.vue"
 import adminmenu from "./components/adminmenu.vue"
-cartPage
+
 import order from "./components/order.vue"
 import cartPage from "./components/cartPage.vue"
 import courosal from "./components/courosal.vue"
 import userinfo from "./components/userinfo.vue"
 import allUser from "./components/allUser.vue"
+import thankyou from "./components/thankyou.vue"
 import test from "./components/test.vue"
 
 updatemenu
@@ -21,6 +22,11 @@ const routes=[
       name:"test",
       component:test,
       path:"/test"
+     },
+     {
+      name:"thankyou",
+      component:thankyou,
+      path:"/thankyou"
      },
      {
       name:"allUser",
