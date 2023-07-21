@@ -28,7 +28,7 @@
 <script>
 import axios from "axios";
 export default {
-  name: "signup",
+  name: "sigUup",
   data() {
     return {
       name: "",

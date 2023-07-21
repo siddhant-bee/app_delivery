@@ -42,7 +42,7 @@ import axios from 'axios';
 
 
 export default {
-   name:"image",
+   name:"iMage",
   
   data() {
     return {

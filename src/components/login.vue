@@ -44,7 +44,7 @@ export default {
         localStorage.setItem("id", result.data.id)
         localStorage.setItem("role", result.data.role)
         localStorage.setItem("token", result.data.token)
-        // localStorage.setItem("user-info", JSON.stringify(result.data));
+        localStorage.setItem("user-info", JSON.stringify(result.data));
         // localStorage.setItem("user-info", result.data);
         // const user_info = localStorage.getItem("user-info")
         console.log(localStorage.getItem("token"));
