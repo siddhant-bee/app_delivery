@@ -53,7 +53,7 @@ export default {
     };
   },
   created(){
-             const token = localStorage.getItem("token")
+        const token = localStorage.getItem("token")
     axios.defaults.headers.common['Authorization'] = token;
     axios.get('http://localhost:5000/check').then((response) => {
 console.log(response)
