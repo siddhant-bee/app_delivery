@@ -32,7 +32,7 @@ router.post("/delete", (req,res)=>{
             console.log(err)
         }
         else{
-            res.status(200).send("Item deleted.",result)
+            res.status(200).send(result)
         }
        })
     }catch(err){
@@ -45,7 +45,7 @@ router.get('/menu', (req, res)=>{
     // console.log(req)
     client.query(`Select * from menu `, (err, result)=>{
         if(!err){
-            console.log("authenticated")
+            // console.log("authenticated")
             res.send(result.rows);
             // console.log(result.rows 
         }

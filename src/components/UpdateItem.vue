@@ -2,7 +2,7 @@
   <div class="main">
     <div><Adminnavbar /></div>
     <div class="menu">
-      <h1>Add Menu</h1>
+      <h1>Update Menu</h1>
       <form class="form-menu" @submit.prevent="addItem">
         <div class="gg ">
           <label for="name">Name:</label>
@@ -19,14 +19,14 @@
             class="border border-secondary"
             width="180"
             height="200"
-            alt="UPLOAD IMAGE "
+            alt="hey there"
           />
           <input class="selectFile"
             type="file"
             id="image"
             accept="image/*"
             @change="handleImageUpload"
-            required
+       
           />
         </div>
         <button  type="submit" >Add Item</button>
@@ -44,6 +44,7 @@ export default {
   name: "updateMenu",
   data() {
     return {
+        id:null,
       itemName: "",
       itemDescription: "",
       itemPrice: null,
@@ -53,10 +54,15 @@ export default {
     };
   },
   created(){
+    const id = this.$route.params.id
         const token = localStorage.getItem("token")
     axios.defaults.headers.common['Authorization'] = token;
-    axios.get('http://localhost:5000/check').then((response) => {
+    axios.get('http://localhost:5000/getmyitem/'+id).then((response) => {
 console.log(response)
+this.itemName=response.data[0].name
+this.itemPrice=response.data[0].price
+this.selectedImage=this.getImageUrl(response.data[0].image)
+this.id = response.data[0].id       
     }
     )
     .catch(err=>{
@@ -66,9 +72,24 @@ console.log(response)
 
   },
   methods: {
+  getImageUrl(image){
+        // console.log(image)
+        if(image==null){
+         return require('@/assets/woocommerce-placeholder-600x600.png')
+        }else{
+        const base64 = window.btoa(
+        new Uint8Array(image.data).reduce(
+          (data, byte) => data + String.fromCharCode(byte),
+          ''
+        )
+      );
+        return `data:${image.contentType};base64,${base64}`;
+       }
+},
     addItem() {
       // Logic to save the item to the menu
       const newItem = {
+        id:this.id,
         name: this.itemName,
         description: this.itemDescription,
         price: this.itemPrice,
@@ -82,11 +103,10 @@ console.log(response)
               const token = localStorage.getItem("token")
     axios.defaults.headers.common['Authorization'] = token;
       axios
-        .post("http://localhost:5000/imageUpload", formData)
+        .post("http://localhost:5000/update", formData)
         .then((response) => {
           console.log(response);
-          this.image = [];
-          this.selectedImage = "";
+         
           alert("Item Added");
         })
         .catch((error) => {
@@ -95,10 +115,7 @@ console.log(response)
           
         });
       // Reset form fields
-      this.itemName = "";
-      this.itemDescription = "";
-      this.itemPrice = null;
-      this.itemImage = null;
+     
     },
     handleImageUpload(event) {
       const file = event.target.files[0];

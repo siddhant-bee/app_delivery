@@ -15,7 +15,7 @@ import userinfo from "./components/userinfo.vue"
 import allUser from "./components/allUser.vue"
 import thankyou from "./components/thankyou.vue"
 import test from "./components/test.vue"
-
+import UpdateItem from "./components/UpdateItem.vue"
 updatemenu
 const routes=[
    {
@@ -92,6 +92,11 @@ const routes=[
                   component:updatemenu,
                   path:"/updatemenu"
                      },
+                     {
+                        name:"updateitem",
+                        component:UpdateItem,
+                        path:"/updateitem/:id"
+                           },
 
     // {
     //     name:"header",

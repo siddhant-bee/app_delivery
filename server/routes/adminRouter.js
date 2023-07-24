@@ -7,11 +7,11 @@ const fs = require('fs')
 
 const router = express.Router()
 
-router.use(express.json({ limit: '50mb' }));
-router.use(express.urlencoded({ limit: '50mb', extended: true }));
+router.use(express.json({ limit: '50mb' }));    
+router.use(express.urlencoded({ limit: '50mb', extended: true }));  
 const upload = multer({dest: "uploads/",
     limits: {
-      fieldSize: 50 * 1024 * 1024 // 10MB
+      fieldSize: 50 * 1024 * 1024 // 10MB   
     }
   });
 
@@ -78,10 +78,53 @@ router.post("/imageUpload", upload.array("images[]") ,async (req,res)=>{
             const { rows } = await client.query(insertQuery, [data.name,data.price,imageBuffer]);
             console.log(rows)
             return res.status(200).json({mess:"product added"})
-    }catch(err){
+    }catch(err){    
         console.log(err)
         return res.status(500).json({mess:err})
     }
+})
+
+
+
+
+router.post("/update", upload.array("images[]") ,async (req,res)=>{
+    let imageBuffer = null
+    const data = JSON.parse(req.body.item)
+    const files = req.files
+    console.log(data)
+    console.log(files)
+    try{
+        if(files.length>0){
+            const file = files[0]
+            imageBuffer = fs.readFileSync(file.path)
+            const query = 'Update menu set name = $1, price = $2, image = $3 where id = $4'
+            const {rows} = await client.query(query,[data.name,data.price,imageBuffer,data.id])
+            console.log(rows)
+            return res.status(200).json({mess:"product added"})
+        }else{
+            const query = 'Update menu set name = $1, price = $2 where id = $3'
+            const {rows} = await client.query(query,[data.name,data.price,data.id])
+            console.log(rows)
+            return res.status(200).json({mess:"product added"})
+        }
+    }catch(err){    
+        console.log(err)
+        return res.status(500).json({mess:err})
+    }
+})
+router.get("/getmyitem/:id",(req,res)=>{
+    console.log("helllllllllooooooo")
+    const id = req.params.id
+    console.log(id)
+    const query = `select * from menu where id = ${id}`
+    client.query(query,(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            res.send(result.rows)
+        }
+    })
 })
 
 module.exports = router

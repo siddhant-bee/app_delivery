@@ -133,7 +133,7 @@ addtoCart(item){
 .gif-button {
   position: relative;
   padding: 20px 20px;
-  background-color: white;
+  background-color:white;
   color: #fff;
   border: none;
   border-radius: 5px;

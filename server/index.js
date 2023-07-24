@@ -20,8 +20,9 @@ app.use(bodyParser.json());
 app.use(cors());
 const PORT = 5000
 app.listen(PORT,console.log(`Server is running at ${PORT}`))
+app.use('/',adminRouter)
 app.use('/',loginRouter)
 app.use('/',userRouter)
-app.use('/',adminRouter)
+
 
 

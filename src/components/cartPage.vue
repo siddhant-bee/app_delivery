@@ -82,6 +82,7 @@ mounted(){
       .then(resposnse=>{
         console.log(resposnse)
               this.cartItems = this.cartItems.filter((val,idx)=>val.id!=id)
+              this.amount=0
       })
       .catch(err=>{
         console.log(err)

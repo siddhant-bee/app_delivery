@@ -11,6 +11,13 @@
               width="80"
               height="80"
           /></router-link>
+          <router-link to="/">
+            <img class="logoimg"
+              src="../assets/house.png"
+              alt="Logo"
+              width="80"
+              height="80"
+          /></router-link>
         </div>
         <div class="brandname">
           <!-- Your brand name or text here -->
@@ -32,10 +39,10 @@
          <router-link to="/adminhome">
           <button class="homee" @click="updateMenu">Home </button></router-link>
         <router-link to="/updatemenu">
-          <button class="menuupdate" @click="updateMenu">Upload Menu</button></router-link
+          <button class="menuupdate" @click="updateMenu">Add Menu</button></router-link
         >
         <router-link to="/adminmenu"
-          ><button class="menucheck" @click="uploadMenu">check Menu</button></router-link
+          ><button class="menucheck" @click="uploadMenu">Check Menu</button></router-link
         >
         <router-link to="/order">
           <button @click="updateMenu"  class="orderhistory"  >Order History</button></router-link
@@ -129,6 +136,7 @@ background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,0.6
 }
 .logoimg{
   border-radius: 10px;
+  padding: 5px;
 }
 </style>
 

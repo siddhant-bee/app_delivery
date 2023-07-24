@@ -41,21 +41,12 @@ export default {
   methods: {
     delete_menu(id) {
       console.log(id);
-      const data = {
-        id: id,
-      };
-      
-      axios
-        .post("http://localhost:5000/delete_menu", data)
-        .then((resposnse) => {
-          console.log(resposnse);
-          // this.cartItems = this.cartItems.filter((val,idx)=>val.id!=id)
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    this.$router.push({name:"updateitem",params:{id:id}});
     },
-  },
+      
+    
+    },
+
   created() {
     axios
       .get("http://localhost:5000/menu")
