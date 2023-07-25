@@ -134,9 +134,13 @@ background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,0.6
  /* background-image: linear-gradient(to bottom right,#00A1FF,#00FF8F); */
   flex-direction: column;
 }
+
+/*  */
 .logoimg{
   border-radius: 10px;
   padding: 5px;
+
+
 }
 </style>
 
