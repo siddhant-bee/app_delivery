@@ -37,6 +37,8 @@
 <script>
 import Adminnavbar from "./adminnavbar.vue";
 import axios from "axios";
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 export default {
   components: {
     Adminnavbar,
@@ -107,7 +109,9 @@ this.id = response.data[0].id
         .then((response) => {
           console.log(response);
          
-          alert("Item Added");
+               toast("ITEM UPDATED !", {
+        autoClose: 1000,
+      }); // ToastOptions
         })
         .catch((error) => {
           console.error(error);

@@ -12,17 +12,17 @@ const router = express.Router()
 
 
 router.use(bodyParser.json())
-router.use(authenticate)
+// router.use(authenticate)
 
 //check 
-router.get('/checkuser',(req,res)=>{
+router.get('/checkuser',authenticate,(req,res)=>{
     res.send('authorised')
 })
 
 
 //delete item from cart
 
-router.post("/delete", (req,res)=>{
+router.post("/delete", authenticate,(req,res)=>{
     console.log(req.body)
     const id = req.body.id
     try{
@@ -41,7 +41,7 @@ router.post("/delete", (req,res)=>{
 })
 
 //menu 
-router.get('/menu', (req, res)=>{
+router.get('/menu', authenticate,(req, res)=>{
     // console.log(req)
     client.query(`Select * from menu `, (err, result)=>{
         if(!err){
@@ -55,7 +55,7 @@ router.get('/menu', (req, res)=>{
 
 //checkout
 
-router.post('/checkout/:id' ,(req,res)=>{
+router.post('/checkout/:id' ,authenticate,(req,res)=>{
     const id = req.params.id
     const query = `select * from cart_info where userid =${id}`
     client.query(query,(err,results)=>{
@@ -92,7 +92,7 @@ router.post('/checkout/:id' ,(req,res)=>{
 //add to cart
 
 
-router.post("/addtocart",async (req,res)=>{
+router.post("/addtocart",authenticate,async (req,res)=>{
     // console.log(req.body)
     let {user_id,menu_id,name,price} = req.body
 
@@ -135,11 +135,34 @@ catch(err){
     return res.status(500).json({mess:err})
 }
 })
+//order history
+
+router.get('/orderhistory/:id',authenticate,(req,res)=>{
+    const id = req.params.id
+    console.log(id)
+    try {
+        const query = `select * from checkout where user_id = ${id}`
+        client.query(query,(err,result)=>{
+            if(err){
+                console.log(err)
+            }
+            else{
+                res.send(result.rows)
+            }
+        })
+    } catch (err) {
+        console.error(err.message)
+        
+    }
+
+})
+
+ 
 
 //cart info
 
 
-router.get('/cartInfo/:id',(req,res)=>{
+router.get('/cartInfo/:id',authenticate,(req,res)=>{
     const id = req.params.id
     
     const query = `SELECT * FROM cart_info WHERE userId = ${id}`

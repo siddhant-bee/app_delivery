@@ -24,6 +24,9 @@
 <script>
 import Header from "./header.vue"
 import axios from "axios"
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
+
 export default {
   name:"cartPage",
        created(){
@@ -82,7 +85,11 @@ mounted(){
       .then(resposnse=>{
         console.log(resposnse)
               this.cartItems = this.cartItems.filter((val,idx)=>val.id!=id)
+              
               this.amount=0
+                 toast("REMOVED !", {
+        autoClose: 1500,
+      }); // ToastOptions
       })
       .catch(err=>{
         console.log(err)

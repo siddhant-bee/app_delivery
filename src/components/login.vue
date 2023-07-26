@@ -22,6 +22,8 @@ import router from '@/routes';
 
 <script>
 import axios from "axios";
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 export default {
   name: "logIn",
 
@@ -51,8 +53,16 @@ export default {
         // console.log(result.data);
         if (result.data.role == "USER") {
           this.$router.push({ name: "home" });
+        toast("SUCCESFULLY LOGED IN!", {
+        autoClose: 30000,
+      }); // ToastOptions
+
         } else {
           this.$router.push({ name: "adminhome" });
+            toast("ADMIN LOGED IN!", {
+        autoClose: 30000,
+      }); // ToastOptions
+
         }
       }
     },

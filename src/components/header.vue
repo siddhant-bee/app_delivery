@@ -17,8 +17,12 @@
           </div>
         </nav>
 
-        <router-link to="/menu" class="menu-link">Check Menu</router-link>
 
+        <router-link to="/menu" class="menu-link">Check Menu</router-link>
+<div class="base">
+        <router-link to="/orderhistory" class="menu-link">My orders</router-link>
+
+</div>
         <button
           class="navbar-toggler"
           type="button"
@@ -91,7 +95,7 @@
 
 <script>
 export default {
-  name: "header",
+  name: "heAder",
   methods: {
     logout() {
       localStorage.clear();
@@ -126,5 +130,10 @@ export default {
   text-decoration: none;
   color: black;
   font-weight: bold;
+}
+.base{
+    padding: 5px;
+    margin-left: 25px;
+
 }
 </style>

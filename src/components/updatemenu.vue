@@ -37,6 +37,8 @@
 <script>
 import Adminnavbar from "./adminnavbar.vue";
 import axios from "axios";
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 export default {
   components: {
     Adminnavbar,
@@ -87,7 +89,9 @@ console.log(response)
           console.log(response);
           this.image = [];
           this.selectedImage = "";
-          alert("Item Added");
+         toast("NEW ITEM ADDED !", {
+        autoClose: 1000,
+      }); // ToastOptions
         })
         .catch((error) => {
           console.error(error);

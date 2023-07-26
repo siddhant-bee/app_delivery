@@ -16,9 +16,9 @@ const upload = multer({dest: "uploads/",
   });
 
 router.use(bodyParser.json())
-router.use(authenticate)
+// router.use(authenticate)
 //get order
-router.get('/getorder', (req, res)=>{
+router.get('/getorder', authenticate,(req, res)=>{
     client.query(`Select * from checkout `, (err, result)=>{
         if(!err){
             res.send(result.rows);
@@ -30,13 +30,13 @@ router.get('/getorder', (req, res)=>{
 })
 
 //check admin
-router.get('/check',(req,res)=>{
+router.get('/check',authenticate,(req,res)=>{
     res.send('authorised')
 })
 
 //get all user
 
-router.get('/user', (req, res)=>{
+router.get('/user', authenticate, (req, res)=>{
     client.query(`Select * from public.user`, (err, result)=>{
         if(!err){
             res.send(result.rows);
@@ -46,7 +46,7 @@ router.get('/user', (req, res)=>{
     });
     client.end;
 })
-router.get('/menuadmin', (req, res)=>{
+router.get('/menuadmin',authenticate, (req, res)=>{
     // console.log(req)
     client.query(`Select * from menu `, (err, result)=>{
         if(!err){
@@ -63,7 +63,7 @@ router.get('/menuadmin', (req, res)=>{
 
 //logic to import image
 
-router.post("/imageUpload", upload.array("images[]") ,async (req,res)=>{
+router.post("/imageUpload", authenticate, upload.array("images[]") ,async (req,res)=>{
     let imageBuffer = null
     const data = JSON.parse(req.body.item)
     const files = req.files
@@ -87,7 +87,7 @@ router.post("/imageUpload", upload.array("images[]") ,async (req,res)=>{
 
 
 
-router.post("/update", upload.array("images[]") ,async (req,res)=>{
+router.post("/update", authenticate,upload.array("images[]") ,async (req,res)=>{
     let imageBuffer = null
     const data = JSON.parse(req.body.item)
     const files = req.files
@@ -112,7 +112,7 @@ router.post("/update", upload.array("images[]") ,async (req,res)=>{
         return res.status(500).json({mess:err})
     }
 })
-router.get("/getmyitem/:id",(req,res)=>{
+router.get("/getmyitem/:id", authenticate,(req,res)=>{
     console.log("helllllllllooooooo")
     const id = req.params.id
     console.log(id)
