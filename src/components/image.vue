@@ -107,7 +107,7 @@ export default {
 
 <style scoped>
 .sid {
-  transition: transform 0.5s;
+  transition: transform 0.2s ease-in;
   height: 250px;
 }
 .card {
@@ -122,9 +122,8 @@ export default {
 }
 
 .sid:hover {
-  /* box-shadow: 0 4px 8px rgba(5, 5, 5, 5); Add shadow on hover */
-  /* border-radius: 50px; */
   transform: scale(1.07);
+  transition: 0.7s ease-out;
 }
 
 .button-container {

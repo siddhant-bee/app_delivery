@@ -8,20 +8,26 @@
 
     <h1>Sign up</h1>
     <div class="register">
-      <p>Please Select Role</p>
-      <select class="rolee" v-model="role" name="role" placeholder="Role">
-        <option value="USER" selected>USER</option>
-        <option value="ADMIN">ADMIN</option>
-      </select>
+      <div class="register_form">
+        <p>Please Select Role</p>
+        <select class="rolee" v-model="role" name="role" placeholder="Role">
+          <option value="USER" selected>USER</option>
+          <option value="ADMIN">ADMIN</option>
+        </select>
 
-      <input type="text " v-model="name" placeholder=" Enter Name" />
+        <input type="text " v-model="name" placeholder=" Enter Name" />
 
-      <input type="text " v-model="email" placeholder=" Enter Email" />
+        <input type="text " v-model="email" placeholder=" Enter Email" />
 
-      <input type="password" v-model="password" placeholder=" Enter password" />
-      <button v-on:click="Signup">Sign Up as {{ role }}</button>
-      <br />
-      <router-link class="log" to="/login">log in</router-link>
+        <input
+          type="password"
+          v-model="password"
+          placeholder=" Enter password"
+        />
+        <button v-on:click="Signup">Sign Up as {{ role }}</button>
+        <br />
+        <router-link class="log" to="/login">log in</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -128,5 +134,21 @@ export default {
   transform: translate(-50%, -50%);
   color: white;
   font-size: 24px;
+}
+
+.register .register_form {
+  max-width: 500px;
+  background-color: rgb(255, 255, 255, 0.75);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem;
+  box-shadow: 0px 0px 12px 4px rgba(230, 228, 228, 0.75);
+}
+.register_form select,
+.register_form input {
+  width: 80%;
 }
 </style>
