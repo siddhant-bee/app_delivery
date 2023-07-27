@@ -16,6 +16,7 @@ import allUser from "./components/allUser.vue"
 import thankyou from "./components/thankyou.vue"
 import test from "./components/test.vue"
 import UpdateItem from "./components/UpdateItem.vue"
+import searchpage from "./components/searchpage.vue"
 
 import orderhistory from "./components/orderhistory.vue"
 updatemenu
@@ -24,6 +25,11 @@ const routes=[
       name:"test",
       component:test,
       path:"/test"
+     },
+     {
+      name:"searchpage",
+      component:searchpage,
+      path:"/searchpage"
      },
      {
       name:"orderhistory",

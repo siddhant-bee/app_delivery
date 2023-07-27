@@ -23,6 +23,9 @@
         <router-link to="/orderhistory" class="menu-link">My orders</router-link>
 
 </div>
+ 
+
+<!-- {{search}} -->
         <button
           class="navbar-toggler"
           type="button"
@@ -59,17 +62,21 @@
           </ul>
 
           <form class="d-flex" role="search">
-            <input
+            <!-- <input
               class="form-control me-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
-            />
+                 v-model="search"
+                 @change="handleChange"
+            /> -->
             <!-- {{retrievedData}} -->
             <button
               id="search"
               class="btn btn-outline-success me-2"
-              type="submit"
+             
+              @click="searchh"
+           
             >
               Search
             </button>
@@ -94,38 +101,42 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: "heAder",
   methods: {
+    handleChange(){
+      axios.get('http://localhost:5000/search/'+this.search)
+      .then(response=>{
+        this.searchitem=response.data
+        console.log(this.searchitem)
+      })
+    },
     logout() {
       localStorage.clear();
       this.$router.push({ name: "login" });
       console.warn("logout");
     },
+    searchh(){
+      this.$router.push({ name: "searchpage" });
+    }
   },
-  //        data() {
-  //   return {
-  //     retrievedData: null
-  //   };
-  // },
+         data() {
+    return {
+      search: "",
+      searchitem:[]
+    };
+   },
   // mounted() {
   //   this.retrieveDataFromLocalStorage();
   // },
-  // methods: {
-  //   retrieveDataFromLocalStorage() {
-  //     // Retrieve a value from localStorage
-  //     const storedData = localStorage.getItem('name');
-  //     this.retrievedData=storedData
 
-  //   }
-  // }
+  
 };
 </script>
 
 <style scoped>
-.head {
- 
-}
+
 .menu-link {
   text-decoration: none;
   color: black;

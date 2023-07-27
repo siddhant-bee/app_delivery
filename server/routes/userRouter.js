@@ -135,6 +135,26 @@ catch(err){
     return res.status(500).json({mess:err})
 }
 })
+// search 
+router.get('/search/:search',authenticate,(req,res)=>{
+    const search = req.params.search
+    console.log(search)
+    const query = `select * from menu where name like'%${search}%'`
+    
+    client.query(query,(err,result)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            console.log(result.rows)
+            res.send(result.rows)
+        }
+    })
+})
+
+
+
+
 //order history
 
 router.get('/orderhistory/:id',authenticate,(req,res)=>{

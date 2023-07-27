@@ -4,7 +4,7 @@
     <div class="menu">
       <h1>Update Menu</h1>
       <form class="form-menu" @submit.prevent="addItem">
-        <div class="gg ">
+        <div class="gg">
           <label for="name">Name:</label>
           <input type="text" id="name" v-model="itemName" required />
         </div>
@@ -21,15 +21,16 @@
             height="200"
             alt="hey there"
           />
-          <input class="selectFile"
+          <input
+            class="selectFile"
             type="file"
             id="image"
             accept="image/*"
             @change="handleImageUpload"
-       
           />
         </div>
-        <button  type="submit" >Add Item</button>
+        <button type="submit">Add Item</button>
+        
       </form>
     </div>
   </div>
@@ -37,8 +38,8 @@
 <script>
 import Adminnavbar from "./adminnavbar.vue";
 import axios from "axios";
-import { toast } from 'vue3-toastify';
-import 'vue3-toastify/dist/index.css';
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 export default {
   components: {
     Adminnavbar,
@@ -46,7 +47,7 @@ export default {
   name: "updateMenu",
   data() {
     return {
-        id:null,
+      id: null,
       itemName: "",
       itemDescription: "",
       itemPrice: null,
@@ -55,43 +56,43 @@ export default {
       selectedImage: "",
     };
   },
-  created(){
-    const id = this.$route.params.id
-        const token = localStorage.getItem("token")
-    axios.defaults.headers.common['Authorization'] = token;
-    axios.get('http://localhost:5000/getmyitem/'+id).then((response) => {
-console.log(response)
-this.itemName=response.data[0].name
-this.itemPrice=response.data[0].price
-this.selectedImage=this.getImageUrl(response.data[0].image)
-this.id = response.data[0].id       
-    }
-    )
-    .catch(err=>{
-      console.log(err)
-         this.$router.push({name:'home'})
-    })
-
+  created() {
+    const id = this.$route.params.id;
+    const token = localStorage.getItem("token");
+    axios.defaults.headers.common["Authorization"] = token;
+    axios
+      .get("http://localhost:5000/getmyitem/" + id)
+      .then((response) => {
+        console.log(response);
+        this.itemName = response.data[0].name;
+        this.itemPrice = response.data[0].price;
+        this.selectedImage = this.getImageUrl(response.data[0].image);
+        this.id = response.data[0].id;
+      })
+      .catch((err) => {
+        console.log(err);
+        this.$router.push({ name: "home" });
+      });
   },
   methods: {
-  getImageUrl(image){
-        // console.log(image)
-        if(image==null){
-         return require('@/assets/woocommerce-placeholder-600x600.png')
-        }else{
+    getImageUrl(image) {
+      // console.log(image)
+      if (image == null) {
+        return require("@/assets/woocommerce-placeholder-600x600.png");
+      } else {
         const base64 = window.btoa(
-        new Uint8Array(image.data).reduce(
-          (data, byte) => data + String.fromCharCode(byte),
-          ''
-        )
-      );
+          new Uint8Array(image.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            ""
+          )
+        );
         return `data:${image.contentType};base64,${base64}`;
-       }
-},
+      }
+    },
     addItem() {
       // Logic to save the item to the menu
       const newItem = {
-        id:this.id,
+        id: this.id,
         name: this.itemName,
         description: this.itemDescription,
         price: this.itemPrice,
@@ -102,24 +103,23 @@ this.id = response.data[0].id
         formData.append("images[]", this.image[i]);
       }
       formData.append("item", JSON.stringify(newItem));
-              const token = localStorage.getItem("token")
-    axios.defaults.headers.common['Authorization'] = token;
+      const token = localStorage.getItem("token");
+      axios.defaults.headers.common["Authorization"] = token;
       axios
         .post("http://localhost:5000/update", formData)
         .then((response) => {
           console.log(response);
-         
-               toast("ITEM UPDATED !", {
-        autoClose: 1000,
-      }); // ToastOptions
+
+          toast("ITEM UPDATED !", {
+            autoClose: 1000,
+          });
+          // ToastOptions
         })
+
         .catch((error) => {
           console.error(error);
-        
-          
         });
       // Reset form fields
-     
     },
     handleImageUpload(event) {
       const file = event.target.files[0];
@@ -151,11 +151,11 @@ this.id = response.data[0].id
   margin-left: 15%;
   border: 1px solid #ccc;
   border-radius: 20px;
-   box-shadow: #686767 2px 2px 5px 5px;
+  box-shadow: #686767 2px 2px 5px 5px;
   width: 800px;
   align-self: center;
   padding: 20px;
-  background-color: #F9F9F9;
+  background-color: #f9f9f9;
 }
 /* Styling for the h1 element inside the menu container */
 .menu h1 {
@@ -201,7 +201,7 @@ this.id = response.data[0].id
 /* Styling for the Add Item button */
 button[type="submit"] {
   padding: 10px 20px;
-  background-color: #007BFF;
+  background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -210,9 +210,9 @@ button[type="submit"] {
   transition: background-color 0.3s ease;
 }
 button[type="submit"]:hover {
-  background-color: #0056B3;
+  background-color: #0056b3;
 }
-::v-deep  .menuupdate {
+::v-deep .menuupdate {
   background-color: #c08989; /* Change to your desired background color */
 }
 </style>
