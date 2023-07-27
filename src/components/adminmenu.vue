@@ -2,32 +2,29 @@
   <div>
     <Adminnavbar />
     <h1>Menu</h1>
-
+    <div class="container">
+  <ul class="responsive-table">
+    <li class="table-header">
+      <div class="col col-1">Food Name</div>
+      <div class="col col-2">Price</div>
+      <div class="col col-3">Operation</div>
+    </li>
     <div v-for="menuItem in menuItems" :key="menuItem.id" class="menu-item">
-      <div class="foodList">
-        <label class="nameOfFood">{{ menuItem.name }}</label>
-        <div class="rateQuantityAmount">
-          <!-- <input class="rate" type="text" v-model="rateList" disabled>
-                    -->
-          <!-- <input class="rate" type="text" v-model="amount" > -->
-
-          <p class="price">Price: RS {{ menuItem.price }}</p>
-        </div>
-        <button class="my-button" @click="delete_menu(menuItem.id)">
+      <li class="table-row">
+      <div class="col col-1" data-label="Customer Name">{{ menuItem.name }}</div>
+      <div class="col col-2" data-label="Amount">{{ menuItem.price }}</div>
+       <button class="mybutton col col-3" @click="delete_menu(menuItem.id)">
           Update item
         </button>
-      </div>
-
-      <h3></h3>
+    </li>
     </div>
+  </ul>
+</div>
   </div>
 </template>
-
 <script>
 import Adminnavbar from "./adminnavbar.vue";
-
 import axios from "axios";
-
 export default {
   name: "adminMenu",
   components: {
@@ -43,10 +40,7 @@ export default {
       console.log(id);
     this.$router.push({name:"updateitem",params:{id:id}});
     },
-      
-    
     },
-
   created() {
     axios
       .get("http://localhost:5000/menu")
@@ -60,50 +54,99 @@ export default {
   },
 };
 </script>
-
 <style  scoped>
-
-
-.menu-item {
-  margin-bottom: 10px;
-  display: flex;
-
-  justify-content: center;
+body {
+  font-family: 'lato', sans-serif;
 }
-.price {
-  padding-right: 50px;
+.container {
+  max-width: 1000px;
+  margin-top: 100px ;
+  margin-left: 250px;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
 }
-
-.foodList {
-  display: flex;
-  background-color: #c0ece1;
-  flex-direction: row;
-  justify-content: space-between;
-  align-self: center;
-  height: 50px;
-  width: 70%;
-  flex-wrap: nowrap;
-  align-items: center;
-  border-radius: 10px;
-  border: 3px solid rgb(214, 216, 219);
-}
-.foodList .nameOfFood {
-  height: 30px;
-  padding-left: 20px;
-  display: flex;
-  justify-content: start;
-  border-radius: 8px;
-  background-color: antiquewhite;
-  width: 60%;
-}
-.foodList .rate {
+h2 {
+  font-size: 26px;
+  margin: 20px 0;
   text-align: center;
-  width: 20%;
+}
+.col-1{
+  width: 300px;
+}
+h2  small {
+    font-size: 0.5em;
+  }
+  .responsive-table  li {
+    border-radius: 3px;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+  }
+.responsive-table .table-header {
+    background-color: #95A5A6;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .responsive-table .table-header {
+    background-color: #95A5A6;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .responsive-table .table-row {
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+  }
+  /* .responsive-table.col-1 {
+    flex-basis: 40%;
+  }
+  .responsive-table.col-2 {
+    flex-basis: 20%;
+  }
+  .responsive-table.col-3 {
+    flex-basis: 40%;
+  } */
+  @media all and (max-width: 767px) {
+    .table-header {
+      display: none;
+    }
+    .table-row{
+    }
+    li {
+      display: block;
+    }
+    .col {
+      flex-basis: 100%;
+    }
+    .col {
+  display: flex;
+  padding: 10px 0;
+}
+.col:before {
+  color: #6C7A89;
+  padding-right: 10px;
+  content: attr(data-label);
+  flex-basis: 50%;
+  text-align: right;
+}
+  }
+ .mybutton{
+  background-color: royalblue;
+  border-radius: 10px;
+  border: none;
   height: 30px;
-  margin: 10px;
-  background-color: antiquewhite;
-  border-radius: 8px;
-}::v-deep  .menucheck {
-  background-color: #d87373; /* Change to your desired background color */
+  width: 150px;
+  color: rgb(255, 255, 255);
+ }
+ .mybutton:hover{
+  height: 40px;
+  box-shadow: #6C7A89 2px 2px 2px 2px;
+  background-color: rgb(63, 68, 92);
+ }
+::v-deep  .menucheck {
+  background-color: #D87373; /* Change to your desired background color */
 }
 </style>

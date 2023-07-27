@@ -7,14 +7,24 @@
     <div id="page-wrap">
         <h2> Shopping Cart</h2>
         <hr>
+
+<div v-if="cartItems.length == 0" class="cent">
+  <h3>Cart is Empty</h3>
+  
+</div>
+<div v-else>
+
+
        <div v-for="product in cartItems" class="product-container" v-bind:key="product.id">
-        <!-- <img class="product-image" :src="product.imageUrl" alt=""> -->
         <div class="details-wrap">
             <h3>{{ product.name }}</h3>
             <p>RS {{ product.price }}</p>
           </div>
           <button class="remove-button" @click="removeitem(product.id)">Remove Item</button>
-       </div>
+       </div> 
+</div>
+
+
         <h3 id="total-price">Total: RS {{ amount }}</h3>
         <button id="checkout-button" @click="checkout" >Checkout</button>
     </div>
@@ -55,6 +65,10 @@ mounted(){
            this.cartItems = response.data;
               if(this.cartItems.length==0){
           this.amount =0
+          this.cartItems = []
+                toast("OPPS card is empty !", {
+        autoClose: 1500,
+      }); 
         }else{
             for(let i = 0;i<this.cartItems.length;i++){
               this.amount = this.amount+this.cartItems[i].price;
@@ -64,14 +78,13 @@ mounted(){
         })
         .catch(error => {
           console.error('Error:', error);
+          
         });
 },
   
   data() {
     return {
-      cartItems: [
-
-      ],
+      cartItems: [],
       amount:0
     };
   },
@@ -87,7 +100,7 @@ mounted(){
               this.cartItems = this.cartItems.filter((val,idx)=>val.id!=id)
               
               this.amount=0
-                 toast("REMOVED !", {
+             toast("REMOVED !", {
         autoClose: 1500,
       }); // ToastOptions
       })
@@ -98,15 +111,26 @@ mounted(){
 
     },
     checkout() {
-      
-      console.log('Checkout clicked!');
-       this.$router.push({name:'userinfo'})
-    },
+      if(this.cartItems.length==0){
+        toast("OPPS card is empty !", {
+        autoClose: 1500,
+        })
+      }
+      else{
+
+        console.log('Checkout clicked!');
+         this.$router.push({name:'userinfo'})
+      }
+
+      }
   },
 };
 </script>
 
 <style scoped>
+.cent{
+ margin-left: 650px;
+}
   h1 {
     border-bottom: 1px solid black;
     margin: 0;

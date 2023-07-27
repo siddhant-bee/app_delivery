@@ -94,7 +94,7 @@ export default {
           console.log(response);
 
           toast("ADDED TO CART !", {
-            autoClose: 1500,
+            autoClose: 1000,
           }); // ToastOptions
         })
         .catch((err) => {
