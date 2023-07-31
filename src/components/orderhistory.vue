@@ -2,13 +2,41 @@
   <div>
     <Header />
     <br />
-    <H1>ORDER HISTORY</H1>
+    <H1>My Profile</H1>
     <hr />
+
+  <div class="profile">
+   
+    <div v-for="i in user" v-bind:key="i.id" class="carddd">
+      <div class="che" v-if="i.id===id">
+        <div class="user-info">
+        <div class="user-info-item">
+          <div class="label">Name:</div>
+          <div class="value">{{ i.name }}</div>
+        </div>
+        <div class="user-info-item">
+          <div class="label">Email:</div>
+          <div class="value">{{ i.email }}</div>
+        </div>
+        <div class="user-info-item">
+          <div class="label">Role:</div>
+          <div class="value">{{ i.role }}</div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+  </div>
+
+<br>
+<h1>ORDER HISTORY</h1>
+<hr>
     <div class="container">
       <ul class="responsive-table">
         <li class="table-header">
           <div class="col col-1">Food Name</div>
           <div class="col col-2">Price</div>
+            <div class="col col-3"></div>
         </li>
       <div v-if="order.length == 0">
        
@@ -24,7 +52,7 @@
       </div>
       
          <div v-else >
-               <div v-for="menuItem in order" :key="order.id" class="menu-item">
+               <div v-for="menuItem in order" :key="menuItem.id" class="menu-item">
           <li class="table-row">
             <div class="col col-1" data-label="Customer Name">
               {{ menuItem.menu_name }}
@@ -32,6 +60,9 @@
             <div class="col col-2" data-label="Amount">
               {{ menuItem.price }}
             </div>
+              <button class="mybutton col col-3" @click="delete_menu(menuItem.id)">
+          Repeat order
+        </button>
           </li>
         </div>
          </div>
@@ -51,17 +82,31 @@ export default {
   data() {
     return {
       order: [],
+      user:[],
+      id:null
     };
   },
   name: "orderHistory",
+  methods:{
+    delete_menu(){
+      this.$router.push({name:'home'})
+    }
+  },
   created() {
+
+    //
+
+
+
+
+
     const user = JSON.parse(localStorage.getItem("user-info"));
-    const id = user.id;
-    console.log(id);
+     this.id = user.id;
+    console.log(this.id);
     const token = localStorage.getItem("token");
     axios.defaults.headers.common["Authorization"] = token;
     axios
-      .get("http://localhost:5000/orderhistory/" + id)
+      .get("http://localhost:5000/orderhistory/" + this.id)
       .then((response) => {
         console.log(response.data);
         if (response.data.length == 0) {
@@ -73,16 +118,74 @@ export default {
       .catch((error) => {
         console.log(error);
       });
+
+
+
+
+axios
+      .get("http://localhost:5000/myinfo")
+      .then((response) => {
+        console.log("hii")
+        console.log(response.data);
+        this.user = response.data;
+      })
+      .catch((err) => {
+        console.error(err.message);
+         
+      });
+
   },
 };
 </script>
 <style scoped>
+
+
+.top{
+    margin-top: 150px;
+}
+.carddd{
+  margin-bottom: 20px;
+}
+.user-info {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  max-width: 300px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.user-info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+h1{
+  text-align: center;
+}
+.label {
+  flex: 1;
+  font-weight: bold;
+  color: #555;
+}
+
+.value {
+  flex: 2;
+  color: #333;
+}
+::v-deep  .alluser {
+  background-color: #5f9cc5; /* Change to your desired background color */
+}
+
+
+
 body {
   font-family: "lato", sans-serif;
 }
 .container {
   max-width: 1000px;
-  margin-top: 100px;
+  margin-top: 15px;
   margin-left: 250px;
   margin-right: auto;
   padding-left: 10px;

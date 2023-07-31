@@ -20,7 +20,7 @@
 
         <router-link to="/menu" class="menu-link">Check Menu</router-link>
 <div class="base">
-        <router-link to="/orderhistory" class="menu-link">My orders</router-link>
+        <router-link to="/orderhistory" class="menu-link">My profile</router-link>
 
 </div>
  
@@ -136,7 +136,11 @@ export default {
 </script>
 
 <style scoped>
-
+.head{
+  position: sticky;
+  top:0px;
+  z-index: 1; 
+}
 .menu-link {
   text-decoration: none;
   color: black;

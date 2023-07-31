@@ -22,7 +22,7 @@
 import Adminnavbar from './adminnavbar.vue'
 import axios from "axios"
   export default {
-    name:"order",
+    name:"ordEr",
     components:{
 Adminnavbar,
     },
@@ -32,13 +32,22 @@ Adminnavbar,
     };
   },
   created()
-  {
- axios.get('http://localhost:5000/getorder')
+{
+  const token = localStorage.getItem("token");
+    axios.defaults.headers.common["Authorization"] = token;
+  axios.get('http://localhost:5000/getorder')
         .then(response => {
-          console.log(response.data)
+          if(response.status == 200)
+          {
+         //   console.log(response.data)
+         
+             this.order = response.data;
        
-           this.order = response.data;
-        
+          }
+          else
+          {
+            console.log('error');
+          }
         })
         .catch(error => {
           console.error('Error:', error);

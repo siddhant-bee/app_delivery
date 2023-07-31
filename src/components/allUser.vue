@@ -1,7 +1,11 @@
 <template>
   <div class="top">
     <Adminnavbar/>
-    <div v-for="i in user" v-bind:key="user.id" class="carddd">
+
+
+    <div class="new">
+
+    <div v-for="i in user" v-bind:key="i.id" class="carddd" >
       <div class="user-info">
         <div class="user-info-item">
           <div class="label">Name:</div>
@@ -17,6 +21,10 @@
         </div>
       </div>
     </div>
+    </div>
+
+
+
   </div>
 </template>
 
@@ -55,9 +63,16 @@ export default {
     margin-top: 150px;
 }
 .carddd{
-  margin-bottom: 20px;
+  margin-left: 380px;
+margin-bottom: 20px;
+  
+}
+.new{
+    display: flex;
+  flex-wrap: wrap;
 }
 .user-info {
+  width: 250px;
   background-color: #f8f8f8;
   border: 1px solid #ccc;
   border-radius: 8px;

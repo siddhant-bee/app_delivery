@@ -22,11 +22,12 @@
           </div>
           <button class="remove-button" @click="removeitem(product.id)">Remove Item</button>
        </div> 
-</div>
-
 
         <h3 id="total-price">Total: RS {{ amount }}</h3>
         <button id="checkout-button" @click="checkout" >Checkout</button>
+</div>
+
+
     </div>
    </div>
 </template>

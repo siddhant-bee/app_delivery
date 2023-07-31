@@ -1,6 +1,8 @@
 <template>
  <div class="bda">
    <div class="box">
+
+
     <div class="name">name </div>
     <div class="price">price </div>
   </div>
@@ -8,7 +10,7 @@
 </template>
 <script>
   export default {
-    name:"test"
+    name:"tEst"
   }
 </script>
 <style scoped>

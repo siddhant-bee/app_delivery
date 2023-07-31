@@ -51,6 +51,7 @@ export default {
   console.log(id)
       axios.post('http://localhost:5000/checkout/'+id,this.formData)
       .then(response=>{
+        console.log(response)
         console.log("checkout successfully")
         this.$router.push({name:'thankyou'})
       })

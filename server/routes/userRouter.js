@@ -64,7 +64,8 @@ router.post('/checkout/:id' ,authenticate,(req,res)=>{
         }else{
             for(let i=0;results.rows.length>i;i++){
                 console.log(results.rows[i])
-                let { userid,name,price} = results.rows[i]
+                let { userid,name,price,menu_id} = results.rows[i]
+                console.log(menu_id)
                 const query =`insert into checkout (menu_name,price,user_id) values ('${name}',${price},${userid})`
                 client.query(query,(err,result)=>{
                     if(err){
@@ -135,6 +136,8 @@ catch(err){
     return res.status(500).json({mess:err})
 }
 })
+
+
 // search 
 router.get('/search/:search',authenticate,(req,res)=>{
     const search = req.params.search
@@ -154,6 +157,17 @@ router.get('/search/:search',authenticate,(req,res)=>{
 
 
 
+//user for profile 
+router.get('/myinfo', authenticate, (req, res)=>{
+    client.query(`Select * from public.user`, (err, result)=>{
+        if(!err){
+            res.send(result.rows);
+            console.log(result.rows)
+            
+        }
+    });
+    client.end;
+})
 
 //order history
 

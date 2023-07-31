@@ -17,13 +17,22 @@ const upload = multer({dest: "uploads/",
 
 router.use(bodyParser.json())
 // router.use(authenticate)
+
+
+
+
 //get order
-router.get('/getorder', authenticate,(req, res)=>{
+router.get('/getorder',authenticate,(req, res)=>{
+    // console.log('returning');
     client.query(`Select * from checkout `, (err, result)=>{
         if(!err){
+            console.log(result.rows)
             res.send(result.rows);
-            // console.log(result.rows)
             
+        }
+        else
+        {
+            res.status(500).send(err);
         }
     });
     client.end;

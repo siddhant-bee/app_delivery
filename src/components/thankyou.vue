@@ -14,7 +14,7 @@ export default {
     name: "thankYou",
   methods: {
     logout() {
-   localStorage.clear();
+    localStorage.clear();
       this.$router.push({ name: "login" });
       console.warn("logout");
       console.log('Logout button clicked!');
